@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class OperationConfig(AppConfig):
-    name = 'appstore.operation'
+    name = 'operation'
+    verbose_name = '用户终页'

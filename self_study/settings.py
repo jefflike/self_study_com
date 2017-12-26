@@ -16,6 +16,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'appstore'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,12 +85,12 @@ WSGI_APPLICATION = 'self_study.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME':'dbstudy',
-    'USER': 'root',
-    'PASSWORD': 'jeff@123',
-    'HOST': 'localhost',
-    'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dbstudy',
+        'USER': 'root',
+        'PASSWORD': 'jeff@123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -118,13 +119,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True  # 默认utc时间
+USE_TZ = False  # 默认utc时间
 
 
 # Static files (CSS, JavaScript, Images)

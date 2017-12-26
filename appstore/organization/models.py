@@ -23,7 +23,7 @@ class CourseOrg(models.Model):
     click_num = models.IntegerField(default=0, verbose_name='点击人数')
     image = models.ImageField(upload_to='org/%Y/%m', verbose_name='封面图', max_length=100)
     address = models.CharField(verbose_name='机构地址', max_length=100)
-    city = models.ForeignKey(verbose_name='课程名', to='CityDict', to_field='nid')
+    city = models.ForeignKey(verbose_name='所在城市名', to='CityDict', to_field='nid')
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
 
     class Meta:

@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class CourseConfig(AppConfig):
-    name = 'appstore.course'
+    name = 'course'
+    verbose_name = '课程信息'

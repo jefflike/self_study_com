@@ -33,7 +33,7 @@ class Comment(models.Model):
 
 
 class UserFavorite(models.Model):
-    user = models.ForeignKey(UserInfo, verbose_name='评论者', to_field='nid')
+    user = models.ForeignKey(UserInfo, verbose_name='收藏者', to_field='nid')
     fav_id = models.IntegerField(default=0, verbose_name='数据id')
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     type_choices = [

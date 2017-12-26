@@ -7,7 +7,7 @@ class Course(models.Model):
     nid = models.BigAutoField(primary_key=True)
     name = models.CharField(verbose_name='课程名', max_length=50)
     describe = models.CharField(verbose_name='课程简介', max_length=255)
-    detail = models.TextField()
+    detail = models.TextField(verbose_name='课程详情')
     students = models.IntegerField(default=0, verbose_name='学习人数')
     recive_num = models.IntegerField(default=0, verbose_name='收藏人数')
     click_num = models.IntegerField(default=0, verbose_name='点击人数')
@@ -18,7 +18,7 @@ class Course(models.Model):
         ('middle', "中级"),
         ('difficult', "难"),
     ]
-    degree = models.CharField(choices=type_choices, default=None, max_length=10)
+    degree = models.CharField(choices=type_choices, default=None, max_length=10, verbose_name='课程难度')
     learn_times = models.IntegerField(default=0, verbose_name='课程时长（分钟）')
 
     class Meta:
@@ -38,6 +38,9 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = '章节'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class Video(models.Model):

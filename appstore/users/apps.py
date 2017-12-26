@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'appstore.users'
+    name = 'users'
+    verbose_name = '用户信息'
