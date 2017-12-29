@@ -30,3 +30,13 @@ class RegisterForm(Form):
     email = fields.EmailField(required=True)
     password = fields.CharField(required=True, min_length=5)
     captcha = CaptchaField(error_messages={"invalid": "验证码错误"})
+
+
+class ForgetForm(Form):
+    email = fields.EmailField(required=True)
+    captcha = CaptchaField(error_messages={"invalid": "验证码错误"})
+
+
+class ModifyPwdForm(Form):
+    password1 = fields.CharField(required=True, min_length=5)
+    password2 = fields.CharField(required=True, min_length=5)

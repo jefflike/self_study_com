@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+{% load staticfiles %}
 <head>
 	<meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 	<title>自学网登录</title>
-	<link rel="stylesheet" type="text/css" href="static/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="static/css/login.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
 <body>
 <div class="dialog" id="jsDialog">
@@ -67,21 +67,21 @@
             </div>
             <div class="fl form-box">
                 <h2>帐号登录</h2>
-                <form action="login.html" method="post" autocomplete="off">
+                <form action="{% url 'login' %}" method="post" autocomplete="off">
                     {% csrf_token %}
                     <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
                         <label>用&nbsp;户&nbsp;名</label>
-                        <input name="username" id="account_l" type="text" placeholder="用户名/邮箱" />
+                        <input name="username" id="account_l" type="text" placeholder="用户名/邮箱" value="{{ login_form.username.value }}"/>
                     </div>
                     <div class="error btns login-form-tips" id="jsLoginTips">{{ login_form.errors.username.0 }}</div>
                     <div class="form-group marb8 {% if login_form.errors.username %}errorput{% endif %}">
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" value="{{ login_form.password.value }}"/>
                     </div>
                     <div class="error btns login-form-tips" id="jsLoginTips">{% if  login_form.errors.password.0 %}{{ login_form.errors.password.0 }}{% else %}{{ msg }}{% endif %}</div>
                      <div class="auto-box marb38">
 
-                        <a class="fr" href="forgetpwd.html">忘记密码？</a>
+                        <a class="fr" href="{% url 'forget_pwd' %}">忘记密码？</a>
                      </div>
                      <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />
                 </form>
