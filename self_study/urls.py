@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from extra_apps import xadmin
 from users import views
 from django.views.generic import TemplateView
+from django.views.static import serve
+from self_study.settings import MEDIA_ROOT
 
 
 urlpatterns = [
@@ -30,4 +32,7 @@ urlpatterns = [
     url(r'^register.html$', views.RegisterView.as_view(), name="register"),
     url(r'^index.html$', views.index, name='index'),
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='index'),
+
+    url(r'^org/', include('organization.urls', namespace='org')),
+    url(r'^static/media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]

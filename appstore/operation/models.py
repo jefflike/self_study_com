@@ -61,7 +61,7 @@ class UserMessage(models.Model):
 
 
 class UserCourse(models.Model):
-    nid = models.IntegerField(primary_key=True)
+    nid = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(UserInfo,verbose_name='用户')
     course = models.ForeignKey(Course,verbose_name='课程', to_field='nid')
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)

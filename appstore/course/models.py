@@ -1,4 +1,5 @@
 from django.db import models
+from organization.models import CourseOrg
 
 # Create your models here.
 
@@ -6,6 +7,7 @@ from django.db import models
 class Course(models.Model):
     nid = models.BigAutoField(primary_key=True)
     name = models.CharField(verbose_name='课程名', max_length=50)
+    course_org = models.ForeignKey(CourseOrg, verbose_name="课程机构", null=True, blank=True)
     describe = models.CharField(verbose_name='课程简介', max_length=255)
     detail = models.TextField(verbose_name='课程详情')
     students = models.IntegerField(default=0, verbose_name='学习人数')

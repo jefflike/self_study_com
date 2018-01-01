@@ -21,11 +21,11 @@ class CourseOrgAdmin():
 
 
 class TeacherAdmin():
-    list_display = ['name', 'describe', 'work_year', 'company', 'address', 'concern_num',
+    list_display = ['name', 'describe', 'work_year', 'address', 'concern_num',
                     'create_time', 'org']
-    search_fields = ['name', 'describe', 'work_year', 'company', 'address', 'concern_num',
+    search_fields = ['name', 'describe', 'work_year', 'address', 'concern_num',
                      'create_time', 'org']
-    list_filter = ['name', 'describe', 'work_year', 'company', 'address', 'concern_num',
+    list_filter = ['name', 'describe', 'work_year', 'address', 'concern_num',
                    'create_time', 'org__name']
 
 
