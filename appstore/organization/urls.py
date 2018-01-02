@@ -18,9 +18,9 @@ urlpatterns = [
     url(r'^add_fav/$', views.AddFavView.as_view(), name='add_fav'),
     #
     # # 讲师列表页
-    # url(r'^teacher/list/$', TeacherListView.as_view(), name='teacher_list'),
+    url(r'^teacher/list/$', views.TeacherListView.as_view(), name='teacher_list'),
     #
     # # 讲师详情页
-    # url(r'^teacher/detail/(?P<teacher_id>\d+)/$', TeacherDetailView.as_view(), name='teacher_detail'),
+    url(r'^teacher/detail/(?P<teacher_id>\d+)/$', views.TeacherDetailView.as_view(), name='teacher_detail'),
 
 ]

@@ -34,5 +34,8 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='index'),
 
     url(r'^org/', include('organization.urls', namespace='org')),
-    url(r'^static/media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
+    url(r'^static/media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}), 
+
+    # 课程相关 url 配置
+    url(r'^course/', include('course.urls', namespace='course')),
 ]

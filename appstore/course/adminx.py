@@ -7,11 +7,11 @@ from extra_apps import xadmin
 
 class CourseAdmin():
     list_display = ['name', 'describe', 'detail', 'students', 'recive_num', 'click_num', 'image',
-                    'create_time', 'degree', 'learn_times']
+                    'create_time', 'degree', 'learn_times', 'teacher']
     search_fields = ['name', 'describe', 'detail', 'students', 'recive_num', 'click_num', 'image',
-                     'degree', 'learn_times']
+                     'degree', 'learn_times', 'teacher']
     list_filter = ['name', 'describe', 'detail', 'students', 'recive_num', 'click_num', 'image',
-                   'create_time', 'degree', 'learn_times']
+                   'create_time', 'degree', 'learn_times', 'teacher']
 
 
 class LessonAdmin():
