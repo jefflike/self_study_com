@@ -20,7 +20,8 @@ class CourseListView(View):
         # 课程搜索
         serach_keywords = request.GET.get('keywords', "")
         if serach_keywords:
-            all_courses = all_courses.filter(Q(name__icontains=serach_keywords) | Q(desc__icontains=serach_keywords) | Q(detail__icontains=serach_keywords))
+            all_courses = all_courses.filter(Q(name__icontains=serach_keywords) | Q(
+                describe__icontains=serach_keywords) | Q(detail__icontains=serach_keywords))
 
         # 课程排序
         sort = request.GET.get('sort', "")
@@ -60,10 +61,14 @@ class CourseDetailView(View):
         has_fav_org = False
 
         if request.user.is_authenticated():
-            if UserFavorite.objects.filter(user=request.user, fav_id=course_id, fav_type=1):
-                has_fav_course =  True
+            if UserFavorite.objects.filter(
+                    user=request.user, fav_id=course_id, fav_type=1):
+                has_fav_course = True
 
-            if UserFavorite.objects.filter(user=request.user, fav_id=course.course_org.nid, fav_type=2):
+            if UserFavorite.objects.filter(
+                    user=request.user,
+                    fav_id=course.course_org.nid,
+                    fav_type=2):
                 has_fav_org = True
         # tag = course.tag
         # if tag:
@@ -85,7 +90,8 @@ class CourseInfoView(LoginRequiredMixin, View):
         course = models.Course.objects.get(nid=int(course_id))
 
         # 查询用户是否已经关联了该课程
-        user_courses = UserCourse.objects.filter(user=request.user, course=course)
+        user_courses = UserCourse.objects.filter(
+            user=request.user, course=course)
         if not user_courses:
             user_course = UserCourse(user=request.user, course=course)
             user_course.save()
@@ -97,9 +103,11 @@ class CourseInfoView(LoginRequiredMixin, View):
 
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
         # 取出所有课程 id
-        course_ids = [user_course.course.nid for user_course in all_user_courses]
+        course_ids = [
+            user_course.course.nid for user_course in all_user_courses]
         # 获取学过该用户的学过的其他所有课程的前五名
-        relate_courses = models.Course.objects.filter(nid__in=course_ids).order_by("-click_num")[:5]
+        relate_courses = models.Course.objects.filter(
+            nid__in=course_ids).order_by("-click_num")[:5]
 
         all_resource = models.CourseResouce.objects.filter(course=course)
         return render(request, 'course-video.html', {
@@ -119,9 +127,11 @@ class CommentView(LoginRequiredMixin, View):
 
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
         # 取出所有课程 id
-        course_ids = [user_course.course.nid for user_course in all_user_courses]
+        course_ids = [
+            user_course.course.nid for user_course in all_user_courses]
         # 获取学过该用户的学过的其他所有课程的前五名
-        relate_courses = models.Course.objects.filter(nid__in=course_ids).order_by("-click_num")[:5]
+        relate_courses = models.Course.objects.filter(
+            nid__in=course_ids).order_by("-click_num")[:5]
 
         all_comments = Comment.objects.filter(course=course)
         return render(request, 'course-comment.html', {
@@ -165,7 +175,8 @@ class VideoPlayView(LoginRequiredMixin, View):
         video = models.Video.objects.get(id=int(vedio_id))
         course = video.lesson.course
 
-        user_courses = UserCourse.objects.filter(user=request.user, course=course)
+        user_courses = UserCourse.objects.filter(
+            user=request.user, course=course)
         if not user_courses:
             user_courses = UserCourse(user=request.user, course=course)
             user_courses.save()
@@ -173,9 +184,11 @@ class VideoPlayView(LoginRequiredMixin, View):
         user_courses = UserCourse.objects.filter(course=course)
         user_ids = [user_course.user.id for user_course in user_courses]
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
-        course_ids = [user_course.course.nid for user_course in all_user_courses]
+        course_ids = [
+            user_course.course.nid for user_course in all_user_courses]
 
-        relate_courses = models.Course.objects.filter(nid__in=course_ids).order_by('-click_num')[:5]
+        relate_courses = models.Course.objects.filter(
+            nid__in=course_ids).order_by('-click_num')[:5]
 
         all_resources = models.CourseResouce.objects.filter(course=course)
         return render(request, 'course-play.html', {

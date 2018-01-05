@@ -26,6 +26,7 @@ class Course(models.Model):
     category = models.CharField(max_length=20, verbose_name="课程类别", default="后端开发")
     you_need_know = models.CharField(max_length=300, verbose_name="课程须知", default='')
     teacher_tell = models.CharField(max_length=300, verbose_name="老师告诉你", default='')
+    is_banner = models.BooleanField(default=False, verbose_name="是否轮播")
 
     class Meta:
         verbose_name = '课程'

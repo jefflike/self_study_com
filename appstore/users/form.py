@@ -2,9 +2,10 @@ __author__ = 'Jeff'
 __date__ = '2017/12/27 15:50'
 
 
-from django.forms import Form, widgets
+from django.forms import Form, widgets, ModelForm
 from django.forms import fields
 from captcha.fields import CaptchaField
+from .models import UserInfo
 
 
 class Loginform(Form):
@@ -40,3 +41,15 @@ class ForgetForm(Form):
 class ModifyPwdForm(Form):
     password1 = fields.CharField(required=True, min_length=5)
     password2 = fields.CharField(required=True, min_length=5)
+
+
+class UserInfoForm(ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['nickname', 'birthday', 'cellphone_number', 'sex', 'address']
+
+
+class UploadImageForm(ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['avatar', ]

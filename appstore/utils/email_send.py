@@ -35,6 +35,17 @@ def send_register_email(email, send_type='register'):
         if send_status:
             pass
 
+    elif send_type == "update_email":
+        email_title = "自学网邮箱修改验证码"
+        code = random_str(4)
+        email_record.code = code
+        email_record.save()
+        email_body = "你的邮箱验证码为: {0}".format(code)
+        send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
+
+        if send_status:
+            pass
+
 
 def random_str(randomlength=8):
     salt = ''.join(random.sample(string.ascii_letters + string.digits, randomlength))

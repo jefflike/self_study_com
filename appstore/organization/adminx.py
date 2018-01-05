@@ -18,6 +18,7 @@ class CourseOrgAdmin():
                      'create_time', 'address', 'city']
     list_filter = ['name', 'describe', 'students', 'receive_num', 'click_num', 'image',
                    'create_time', 'address', 'city__name']
+    relfield_style = 'fk_ajax'#课程机构多的时候改为搜索查找方式代替下拉框
 
 
 class TeacherAdmin():

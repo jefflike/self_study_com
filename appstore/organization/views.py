@@ -6,6 +6,7 @@ import json
 from .form import UserAskForm
 from course.models import Course
 from operation.models import UserFavorite
+from django.db.models import Q
 
 
 # Create your views here.
@@ -25,6 +26,12 @@ class OrgView(View):
         if categorys:
             # 筛选出当前城市的结果集
             all_orgs = all_orgs.filter(category=categorys)
+
+        # 机构搜索
+        serach_keywords = request.GET.get('keywords', "")
+        if serach_keywords:
+            all_orgs = all_orgs.filter(
+                Q(name__icontains=serach_keywords) | Q(describe__icontains=serach_keywords))
 
         # 取出筛选城市
         city_id = request.GET.get('city', "")
@@ -144,8 +151,8 @@ class AddFavView(View):
     def post(self, request):
         fav_id = int(request.POST.get('fav_id', 0))
         fav_type = int(request.POST.get('fav_type', 0))
-        print(fav_type)
         print(fav_id)
+        print(fav_type)
         res = {}
         if not request.user.is_authenticated():
             res['status'] = False
